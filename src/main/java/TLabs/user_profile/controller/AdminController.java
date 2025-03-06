@@ -2,6 +2,7 @@ package TLabs.user_profile.controller;
 
 import TLabs.user_profile.model.UserProfile;
 import TLabs.user_profile.service.UserProfileService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -6,6 +6,7 @@ import TLabs.user_profile.repository.UserProfileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -74,6 +75,10 @@ public class UserProfileService implements IUserProfileService{
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
     }
 
+    @Override
+    public List<UserProfile> getAllProfiles() {
+        return repository.findAll();
+    }
 
 
 }
