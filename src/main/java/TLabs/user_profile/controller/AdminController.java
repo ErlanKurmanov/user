@@ -5,6 +5,7 @@ import TLabs.user_profile.service.UserProfileService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,7 +22,7 @@ public class AdminController {
     @PatchMapping("/{id}/fields")
     public ResponseEntity<UserProfile> addOrUpdateFields(
             @PathVariable Long id,
-            @RequestBody Map<String, Object> fields) {
+            @RequestBody @Valid Map<String, Object> fields) {
         return ResponseEntity.ok(service.updateAdditionalFields(id, fields));
     }
 
@@ -29,6 +30,18 @@ public class AdminController {
     @DeleteMapping("/{id}/fields/{fieldName}")
     public ResponseEntity<UserProfile> removeField(@PathVariable Long id, @PathVariable String fieldName) {
         return ResponseEntity.ok(service.deleteAdditionalField(id, fieldName));
+    }
+
+    // Добавить метод для получения списка всех профилей
+    @GetMapping
+    public ResponseEntity<List<UserProfile>> getAllProfiles() {
+        return ResponseEntity.ok(service.getAllProfiles());
+    }
+
+    // Добавить метод для получения конкретного профиля
+    @GetMapping("/{id}")
+    public ResponseEntity<UserProfile> getProfile(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getProfile(id));
     }
 
 }
